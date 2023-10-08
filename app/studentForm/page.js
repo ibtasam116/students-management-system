@@ -24,6 +24,7 @@ const studentForm = () => {
       const studentsData = collection(db, "StudentsData");
       await addDoc(studentsData, student);
       console.log("Document written with ID: ");
+      alert("Student successfully added in database")
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -31,7 +32,7 @@ const studentForm = () => {
 
   return (
     <>
-      <div className="container p-5 mx-auto bg-white rounded-lg shadow-lg">
+      <div className="container p-5 mx-auto bg-white rounded-lg shadow-lg mt-10">
         <div className="text-center sm:my-7">
           <h1 className="text-center text-xl sm:text-3xl text-[#3c6e71] font-bold border-b-2 border-orange-200 inline">
             Admission Form
@@ -77,18 +78,6 @@ const studentForm = () => {
               required
             />
           </div>
-
-          <div>
-            <input
-              onChange={(e) => setStudentAddress(e.target.value)}
-              type="text"
-              name="Address"
-              id="Address"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#3c6e71] focus:shadow-outline"
-              placeholder="Enter Address"
-            />
-          </div>
-
           <div>
             <input
               onChange={(e) => setStudentCourse(e.target.value)}
@@ -97,6 +86,17 @@ const studentForm = () => {
               id="course"
               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-[#3c6e71] focus:shadow-outline"
               placeholder="Enter Course"
+            />
+          </div>
+
+          <div className="col-span-2">
+            <input
+              onChange={(e) => setStudentAddress(e.target.value)}
+              type="text"
+              name="Address"
+              id="Address"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#3c6e71] focus:shadow-outline"
+              placeholder="Enter Address"
             />
           </div>
 

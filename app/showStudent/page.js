@@ -16,6 +16,8 @@ const showStudent = () => {
 
   const [id, setId] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const fetchStudent = async () => {
     try {
       const studentsCollection = collection(db, "StudentsData");
@@ -39,13 +41,14 @@ const showStudent = () => {
   }, []);
 
   const onDeletHandler = async (id) => {
-    const docRef = doc(db, "studentsCollection", id);
-
+    const docRef = doc(db, "StudentsData", id);
     try {
       setId(id);
+      setLoading(true);
       await deleteDoc(docRef);
 
       const newStudents = students.filter((student) => id !== student.id);
+      setLoading(false);
       setStudents(newStudents);
     } catch (error) {
       alert("error");
@@ -54,7 +57,7 @@ const showStudent = () => {
 
   return (
     <>
-      <div className="container p-5 mx-auto bg-white rounded-lg shadow-lg">
+      <div className="container p-5 mx-auto bg-white rounded-lg shadow-lg mt-10">
         <div className="text-center sm:my-7">
           <h1 className="text-center text-xl sm:text-3xl text-[#3c6e71] font-bold border-b-2 border-orange-200 inline">
             Students Data
@@ -114,16 +117,8 @@ const showStudent = () => {
                         onClick={() => onDeletHandler(student.id)}
                         class="ms-3 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
-                        Delete
-                        {/* {" "}
-                        {student.id == id && loading ? "loading..." : "delete"} */}
+                        {student.id == id && loading ? "loading..." : "delete"}
                       </button>
-                      {/* <a
-                        href="#"
-                        class="ms-3 font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Delete
-                      </a> */}
                     </td>
                   </tr>
                 </tbody>
