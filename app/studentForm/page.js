@@ -42,7 +42,7 @@ const studentForm = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 gap-5">
           <div>
             <input
               onChange={(e) => setStudentName(e.target.value)}
